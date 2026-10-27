@@ -1,0 +1,22 @@
+id: traefik
+name: Traefik
+kind: integration
+version: "1.0"
+labdex: ">=1.3,<2"
+tags: [proxy, services, discovery]
+description: Read-only. Traefik's HTTP routers become services in the inventory (plan/apply), with their host names as links, on the host each router sends traffic to, or on the Traefik host when the backend isn't in the inventory.
+pages:
+  - {id: routers, label: Routers}
+settings:
+  - {key: url, label: API address, type: string, required: true, placeholder: "http://10.10.100.20:8080", help: "Traefik's API (api.insecure, or behind a router with basic auth)"}
+  - {key: username, label: Basic auth user, type: string}
+  - {key: password, label: Basic auth password, type: secret}
+  - {key: verify_tls, label: Check the TLS certificate, type: bool, default: true}
+  - {key: host, label: The Traefik host, type: string, help: "Inventory host Traefik runs on; services whose backend isn't in the inventory go there. Empty: the host the API address points at"}
+  - {key: entrypoints, label: Only these entry points, type: list, help: "e.g. websecure; empty = all"}
+  - {key: providers, label: Only these providers, type: list, help: "e.g. docker, file; empty = all but internal"}
+actions:
+  - {id: test, label: Check connection, mode: run}
+  - {id: import_services, label: Import services from routers, mode: plan, schedulable: true, description: "Adds a service per router to its host (or the Traefik host), with the router's host name as link; never removes anything"}
+widgets:
+  - {id: routers, label: Traefik, where: dashboard}
