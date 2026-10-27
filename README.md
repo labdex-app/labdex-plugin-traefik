@@ -1,6 +1,6 @@
 # Traefik
 
-A [labdex](https://github.com/reykimedev/labdex) plugin. Read-only. Traefik's HTTP routers become services in the inventory (plan/apply), with their host names as links, on the host each router sends traffic to, or on the Traefik host when the backend isn't in the inventory.
+A [labdex](https://github.com/labdex-app/labdex) plugin. Read-only. Traefik's HTTP routers become services in the inventory (plan/apply), with their host names as links, on the host each router sends traffic to, or on the Traefik host when the backend isn't in the inventory.
 
 **Version** 1.0 · **Works with** labdex >=1.3,<2 · **Plugin id** `traefik`
 
